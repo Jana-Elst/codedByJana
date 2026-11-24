@@ -1,0 +1,300 @@
+:root {
+  --margin-page: 2.5rem;
+  --gutter: 2rem;
+  --background-color: #efefef;
+  --text-color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+p,
+ol,
+ul,
+li,
+nav,
+main,
+section,
+header,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text-color);
+  background: var(--background-color);
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin: var(--margin-page);
+}
+
+.intro-text {
+  grid-column: 1 / span 5;
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+.intro-text p + p {
+  margin-top: 1.75rem;
+}
+
+.intro-contact {
+  grid-column: 7 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1rem;
+}
+
+.intro-contact__locationTime {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sketch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  counter-reset: item;
+}
+
+.sketch-list a {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+.sketch-list li {
+  display: grid;
+  grid-template-columns: max-content max-content max-content 1fr max-content;
+  align-items: end;
+  margin: 0 var(--margin-page);
+}
+
+.sketch-list li::before {
+  grid-column: 2;
+  grid-row: 1;
+  margin-right: 0.5rem;
+  content: 'N°' counter(item);
+  counter-increment: item;
+}
+
+.sketch-list .line {
+  border-bottom: 0.5px solid #000;
+}
+
+.sketch-list .date,
+.sketch-header .date {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+.button-label {
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: 0.75rem;
+}
+
+.detail-page {
+  display: grid;
+  grid-template-rows: max-content minmax(0, 1fr) max-content;
+  gap: 1rem;
+  min-height: 100dvh;
+  padding: 0 var(--margin-page);
+}
+
+.sketch-header {
+  display: grid;
+  grid-template-columns: max-content max-content max-content 1fr max-content;
+  align-items: end;
+  margin-top: 1rem;
+}
+
+.sketch-header .button-label a {
+  text-decoration: none;
+}
+
+.sketch-content {
+  min-height: 24rem;
+  border: 0.5px solid #000;
+}
+
+.sketch-panel {
+  height: 100%;
+  min-height: 24rem;
+}
+
+.sketch-panel[hidden] {
+  display: none;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.nav button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nav button div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav button svg {
+  padding-top: 2.75px;
+}
+
+.nav button rect {
+  fill: none;
+}
+
+.nav button[aria-selected='true'] rect {
+  fill: #000;
+}
+
+.sketch-overview {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin: 2.5rem;
+}
+
+.sketch-info {
+  display: flex;
+  grid-column: 1 / span 4;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sketch-info__header {
+  display: flex;
+}
+
+.sketch-info__header .number {
+  font-size: 2rem;
+}
+
+.sketch-info__header .title {
+  font-size: 4.5rem;
+  text-transform: capitalize;
+}
+
+.sketch-info .description {
+  font-size: 1.5rem;
+}
+
+.sketch-tool {
+  display: grid;
+  min-height: 24rem;
+  place-items: center;
+}
+
+.sketch-mount canvas {
+  display: block;
+  max-width: 100%;
+  border: 0.5px solid #000;
+}
+
+.not-found {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --margin-page: 1rem;
+    --gutter: 1rem;
+  }
+
+  .intro {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intro-text {
+    grid-column: 1 / -1;
+    font-size: 1.35rem;
+  }
+
+  .intro-contact {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .sketch-list li {
+    grid-template-columns: max-content max-content minmax(0, 1fr) max-content;
+  }
+
+  .sketch-list li::before {
+    display: none;
+  }
+
+  .sketch-list .line {
+    margin: 0 0.5rem;
+  }
+
+  .sketch-header {
+    grid-template-columns: max-content max-content 1fr max-content;
+    column-gap: 0.5rem;
+  }
+
+  .sketch-overview {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+  }
+
+  .sketch-info {
+    grid-column: 1;
+  }
+
+  .sketch-info__header .title {
+    font-size: 2.5rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+}
