@@ -4,12 +4,16 @@ import P5Sketch from './P5Sketch'
 
 type ActiveTab = 'overview' | 'interactive'
 
-function TabMark() {
+function TabMark({ selected }: { selected: boolean }) {
   return (
-    <span aria-hidden="true">
+    <span className="flex items-center gap-1" aria-hidden="true">
       [
-      <svg width="8" height="8" viewBox="0 0 8 8">
-        <rect width="8" height="8" />
+      <svg className="pt-[2.75px]" width="8" height="8" viewBox="0 0 8 8">
+        <rect
+          className={selected ? 'fill-black' : 'fill-none'}
+          width="8"
+          height="8"
+        />
       </svg>
       ]
     </span>
@@ -27,32 +31,34 @@ export default function SketchDetail({
 
   return (
     <>
-      <div className="sketch-content" id="sketch-panels">
+      <div className="min-h-96 border-[0.5px] border-black" id="sketch-panels">
         <section
-          className="sketch-panel"
+          className="min-h-96 h-full"
           id="overview-panel"
           role="tabpanel"
           aria-labelledby="overview-tab"
           hidden={activeTab !== 'overview'}
         >
-          <div className="sketch-overview">
-            <div className="sketch-info">
-              <div className="sketch-info__header">
-                <p className="number">N°{number}</p>
-                <p className="title">{post.title}</p>
+          <div className="m-10 grid grid-cols-8 gap-8 max-[700px]:m-4 max-[700px]:grid-cols-1 max-[700px]:gap-4">
+            <div className="col-span-4 flex flex-col gap-6 max-[700px]:col-span-1">
+              <div className="flex">
+                <p className="text-[2rem]">N°{number}</p>
+                <p className="text-[4.5rem] capitalize max-[700px]:text-[2.5rem]">
+                  {post.title}
+                </p>
               </div>
-              <p className="description">{post.description}</p>
-              <div className="sketch-code">
+              <p className="text-2xl">{post.description}</p>
+              <div>
                 <p>CODE</p>
               </div>
             </div>
-            <div className="sketch-pictures">
+            <div>
               <p>PICTURES</p>
             </div>
           </div>
         </section>
         <section
-          className="sketch-panel"
+          className="min-h-96 h-full"
           id="interactive-panel"
           role="tabpanel"
           aria-labelledby="interactive-tab"
@@ -64,10 +70,11 @@ export default function SketchDetail({
         </section>
       </div>
 
-      <nav aria-label="Sketch views">
-        <ul className="nav">
+      <nav className="mb-4" aria-label="Sketch views">
+        <ul className="flex flex-row justify-center gap-8 max-[700px]:gap-4">
           <li>
             <button
+              className="flex cursor-pointer flex-row items-center gap-2 border-0 bg-transparent p-0 font-[inherit] text-inherit"
               type="button"
               id="overview-tab"
               role="tab"
@@ -75,12 +82,13 @@ export default function SketchDetail({
               aria-selected={activeTab === 'overview'}
               onClick={() => setActiveTab('overview')}
             >
-              <TabMark />
+              <TabMark selected={activeTab === 'overview'} />
               <span>Overview sketch</span>
             </button>
           </li>
           <li>
             <button
+              className="flex cursor-pointer flex-row items-center gap-2 border-0 bg-transparent p-0 font-[inherit] text-inherit"
               type="button"
               id="interactive-tab"
               role="tab"
@@ -88,7 +96,7 @@ export default function SketchDetail({
               aria-selected={activeTab === 'interactive'}
               onClick={() => setActiveTab('interactive')}
             >
-              <TabMark />
+              <TabMark selected={activeTab === 'interactive'} />
               <span>Interactive tool</span>
             </button>
           </li>

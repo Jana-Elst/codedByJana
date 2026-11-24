@@ -6,7 +6,13 @@ type Sketch = (instance: p5) => void
 const sketchDefinitions: Partial<Record<string, Sketch>> = {
   '20261105-1.js': (instance) => {
     instance.setup = () => {
-      instance.createCanvas(600, 400)
+      const canvas = instance.createCanvas(600, 400)
+      canvas.elt.classList.add(
+        'block',
+        'max-w-full',
+        'border-[0.5px]',
+        'border-black',
+      )
       instance.background(239)
       instance.noLoop()
       instance.ellipse(instance.width / 2, instance.height / 2, 200, 200)
@@ -41,13 +47,8 @@ export default function P5Sketch({ sketchLink }: { sketchLink: string }) {
   }, [sketchLink])
 
   return (
-    <div className="sketch-tool">
-      <div
-        className="sketch-mount"
-        id="sketch-mount"
-        ref={mountRef}
-        aria-label="Interactive sketch"
-      />
+    <div className="grid min-h-96 place-items-center">
+      <div id="sketch-mount" ref={mountRef} aria-label="Interactive sketch" />
     </div>
   )
 }

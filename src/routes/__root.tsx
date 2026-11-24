@@ -13,9 +13,11 @@ function RootComponent() {
 
 function NotFound() {
   return (
-    <main className="not-found">
-      <h1>Page not found</h1>
-      <Link to="/">Back to the sketches</Link>
+    <main className="grid min-h-screen place-content-center gap-4 text-center">
+      <h1 className="text-2xl">Page not found</h1>
+      <Link className="text-inherit" to="/">
+        Back to the sketches
+      </Link>
     </main>
   )
 }
