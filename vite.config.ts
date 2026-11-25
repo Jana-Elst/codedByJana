@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 import viteReact from '@vitejs/plugin-react'
 
 const config = defineConfig({
-  base: '/codedByJana/',
+  base: '/',
   resolve: { tsconfigPaths: true },
   plugins: [
     tailwindcss(),
